@@ -19,7 +19,7 @@ public class Mazo {
 	/**
 	 * Lista de cartas que componen el mazo.
 	 */
-	protected List<Carta> cartas;
+    public List<Carta> cartas;
 
 	/**
 	 * Constructor del mazo. Inicializa el mazo con las 52 cartas
