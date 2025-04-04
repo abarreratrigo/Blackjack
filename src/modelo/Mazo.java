@@ -7,35 +7,61 @@ import java.util.List;
 import modelo.Carta.Palo;
 import excepciones.NoHayMasCartasException;
 
+/**
+ * Representa un mazo de cartas. Contiene una lista de cartas
+ * que se puede barajar y de la que se pueden solicitar cartas.
+ *
+ * @author Alexis
+ * @version 1.0
+ */
 public class Mazo {
 
+	/**
+	 * Lista de cartas que componen el mazo.
+	 */
 	protected List<Carta> cartas;
-	
+
+	/**
+	 * Constructor del mazo. Inicializa el mazo con las 52 cartas
+	 * de una baraja estándar (13 números por cada uno de los 4 palos).
+	 */
 	public Mazo() {
-		this.cartas = new ArrayList<Carta>();	
-		for(Palo palo: Palo.values()) {
+		this.cartas = new ArrayList<Carta>();
+		for (Palo palo : Palo.values()) {
 			for (int i = 1; i <= 13; i++) {
-				Carta carta = new Carta(i,palo);
+				Carta carta = new Carta(i, palo);
 				this.cartas.add(carta);
 			}
 		}
 	}
-	
-	
+
+	/**
+	 * Baraja las cartas del mazo de forma aleatoria.
+	 */
 	public void barajar() {
 		Collections.shuffle(cartas);
 	}
 
-
+	/**
+	 * Devuelve una representación en cadena del contenido del mazo.
+	 *
+	 * @return Una cadena con todas las cartas del mazo.
+	 */
 	@Override
 	public String toString() {
-		String res="";
+		String res = "";
 		for (Carta carta : cartas) {
-			res=res+carta.toString()+ "\n";
+			res += carta.toString() + "\n";
 		}
 		return res;
 	}
-	
+
+	/**
+	 * Solicita (extrae) la primera carta del mazo.
+	 *
+	 * @return La carta extraída del mazo.
+	 * @throws NoHayMasCartasException si no quedan cartas en el mazo.
+	 */
 	public Carta solicitarCarta() throws NoHayMasCartasException {
 		if (this.cartas.isEmpty()) {
 			throw new NoHayMasCartasException();
@@ -44,6 +70,4 @@ public class Mazo {
 		this.cartas.removeFirst();
 		return carta;
 	}
-	
-	
 }
